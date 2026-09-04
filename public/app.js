@@ -267,5 +267,12 @@ loadHidden();
 loadData();
 
 if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
-  window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(console.warn));
+  window.addEventListener('load', async () => {
+    try {
+      const reg = await navigator.serviceWorker.register('sw.js?v=4');
+      reg.update().catch(() => {});
+    } catch (err) {
+      console.warn('Service Worker registration failed:', err);
+    }
+  });
 }

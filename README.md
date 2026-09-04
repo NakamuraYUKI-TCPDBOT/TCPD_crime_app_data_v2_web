@@ -30,3 +30,14 @@ Cloudflare側の Worker → Settings / Domains & Routes から Custom Domain を
 - `public/` 実際に公開されるWebアプリ
 - `wrangler.jsonc` Cloudflare Workers設定
 - `package.json` Wranglerの実行設定
+
+
+## Android PWA 修正
+- モバイルでは sticky + backdrop-filter を無効化
+- モバイルカードの box-shadow を無効化
+- タッチ端末ではボタンtransitionを無効化
+- Service Workerキャッシュをv4へ更新し、data JSONのクエリ別キャッシュ増殖を防止
+- Worker名を tcpd-crime-app-data-v2-web に統一
+
+更新後、Androidで既にインストール済みの場合は、一度アプリを完全終了して再起動してください。
+旧キャッシュが残る場合はアプリをアンインストール→Chromeでサイトを開く→再インストールが確実です。

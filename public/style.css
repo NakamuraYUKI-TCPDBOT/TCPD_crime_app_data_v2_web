@@ -161,8 +161,9 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
   margin-top: 12px;
   padding: 14px;
   z-index: 10;
-  backdrop-filter: blur(12px);
-  background: rgba(37,37,37,.96);
+  /* Androidのインストール済みPWAでは sticky + backdrop-filter が
+     GPU再合成を重くすることがあるため、ぼかしは使わない */
+  background: #252525;
 }
 .summary-main { display:flex; flex-wrap:wrap; gap:20px 36px; }
 .summary-main > div { display:grid; gap:2px; }
@@ -190,7 +191,8 @@ footer { color:#818181; text-align:center; padding:18px 8px 0; font-size:10px; }
     background:var(--panel);
     border:1px solid var(--border);
     border-radius:10px;
-    box-shadow:0 5px 16px rgba(0,0,0,.16);
+    /* モバイルでは大量のshadowを描画しない */
+    box-shadow:none;
   }
   .crime-row.checked { border-color:rgba(0,255,153,.45); }
   .crime-main { grid-area:name; font-size:14px; font-weight:700; }
@@ -203,7 +205,8 @@ footer { color:#818181; text-align:center; padding:18px 8px 0; font-size:10px; }
   .row-input { width:94px; }
   .toolbar { align-items:stretch; }
   .toolbar > button { align-self:end; min-height:38px; }
-  .summary-card { padding:12px; }
+  /* Android standalone/PWAではsticky要素を通常配置にして描画負荷を下げる */
+  .summary-card { position:static; bottom:auto; padding:12px; }
   .summary-main { gap:12px 26px; }
   .summary-main strong { font-size:20px; }
   .summary-actions button { flex: 1 1 145px; }
@@ -212,4 +215,11 @@ footer { color:#818181; text-align:center; padding:18px 8px 0; font-size:10px; }
 @media (min-width: 761px) {
   .mobile-meta, .input-label-mobile { display:none !important; }
   .input-cell-wrap { display:contents; }
+}
+
+
+/* タッチ端末向け軽量化 */
+@media (hover: none) and (pointer: coarse) {
+  button { transition:none; touch-action:manipulation; }
+  button:active { transform:none; }
 }
