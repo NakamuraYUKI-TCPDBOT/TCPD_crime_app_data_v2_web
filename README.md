@@ -41,3 +41,10 @@ Cloudflare側の Worker → Settings / Domains & Routes から Custom Domain を
 
 更新後、Androidで既にインストール済みの場合は、一度アプリを完全終了して再起動してください。
 旧キャッシュが残る場合はアプリをアンインストール→Chromeでサイトを開く→再インストールが確実です。
+
+
+## v3 プリセット修正
+- 「ヒューマンラボ」を選択した際に「北ヨット強盗」「サンディショア空港襲撃」まで選択される問題を修正。
+- プリセットのグループ判定は `groups.json` を正として扱い、`crimes.json` の `group` はグループ定義が存在しない場合のみフォールバック利用。
+- 同梱の `crimes.json` でも北ヨット強盗=`north_yacht`、サンディショア空港襲撃=`sandyshoresairport` に修正。
+- Service Workerキャッシュをv5へ更新。

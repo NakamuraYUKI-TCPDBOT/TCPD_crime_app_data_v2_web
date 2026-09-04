@@ -127,11 +127,18 @@ function applyPreset(info) {
 }
 
 function checkGroup(groupName) {
-  // groups.jsonを主に使いつつ、crimes.json側のgroupも併用してデータ表記揺れを吸収する。
-  const names = new Set(state.groups[groupName] || []);
-  for (const crime of state.crimes) {
-    if (Array.isArray(crime.group) && crime.group.includes(groupName)) names.add(crime.name);
+  // groups.json を正として扱う。
+  // crimes.json の group は古い/誤った値が残ることがあるため、
+  // groups.json に該当グループが無い場合だけフォールバックとして使う。
+  const configured = state.groups[groupName];
+  const names = new Set(Array.isArray(configured) ? configured : []);
+
+  if (!Array.isArray(configured)) {
+    for (const crime of state.crimes) {
+      if (Array.isArray(crime.group) && crime.group.includes(groupName)) names.add(crime.name);
+    }
   }
+
   for (const name of names) {
     if (state.crimes.some(c => c.name === name)) state.selected.add(name);
   }

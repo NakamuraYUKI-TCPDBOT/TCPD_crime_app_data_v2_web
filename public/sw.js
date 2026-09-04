@@ -1,4 +1,4 @@
-const CACHE = 'tcpd-fine-web-v4-android-fix';
+const CACHE = 'tcpd-fine-web-v5-preset-fix';
 const PRECACHE = [
   './',
   './index.html',
