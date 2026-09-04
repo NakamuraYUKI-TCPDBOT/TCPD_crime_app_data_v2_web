@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#1e1e1e">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="TCPD罰金計算">
+  <title>TurtleCity S2 警察用 罰金計算アプリ</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="assets/icon-192.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="app-header">
+      <div>
+        <p class="eyebrow">TurtleCity Season 2</p>
+        <h1>警察用 罰金計算アプリ</h1>
+      </div>
+      <div class="header-actions">
+        <button id="reloadDataBtn" class="ghost-btn" type="button">データ更新</button>
+      </div>
+    </header>
+
+    <section class="status-card" aria-live="polite">
+      <span id="dataStatusDot" class="status-dot"></span>
+      <span id="dataStatus">データ読込中...</span>
+    </section>
+
+    <section class="preset-section">
+      <div class="section-title-row">
+        <h2>事件プリセット</h2>
+        <button id="clearBtnTop" class="danger-outline-btn" type="button">全クリア</button>
+      </div>
+      <div id="presetGroups" class="preset-groups"></div>
+    </section>
+
+    <section class="toolbar">
+      <label class="search-box">
+        <span>検索</span>
+        <input id="searchInput" type="search" placeholder="罪状名を検索" autocomplete="off">
+      </label>
+      <button id="showHiddenBtn" class="ghost-btn" type="button">非表示を戻す</button>
+    </section>
+
+    <section class="crime-panel">
+      <div class="crime-header desktop-only">
+        <div>罪状名</div>
+        <div>罰金</div>
+        <div>プリズン</div>
+        <div>個数 / 金額</div>
+        <div>個別時間</div>
+        <div>非表示</div>
+      </div>
+      <div id="crimeList" class="crime-list"></div>
+      <div id="emptyState" class="empty-state" hidden>表示できる罪状がありません。</div>
+    </section>
+
+    <section class="summary-card" aria-live="polite">
+      <div class="summary-main">
+        <div>
+          <span class="summary-label">合計罰金額</span>
+          <strong id="totalFine">0万</strong>
+        </div>
+        <div>
+          <span class="summary-label">合計プリズン時間</span>
+          <strong id="totalPrison">0分</strong>
+        </div>
+      </div>
+      <div class="summary-actions">
+        <button id="copyIncidentBtn" type="button">インシデントコピー</button>
+        <button id="copyFineBtn" type="button">罰金金額コピー</button>
+        <button id="copyFine150Btn" type="button">罰金×1.5コピー</button>
+        <button id="clearBtnBottom" class="danger-btn" type="button">クリア</button>
+      </div>
+      <p id="copyNotice" class="copy-notice" aria-live="polite"></p>
+    </section>
+
+    <footer>
+      <p>罪状・グループ・プリセットはGitHubのTCPDデータを優先して読み込み、失敗時は同梱データを使用します。</p>
+    </footer>
+  </div>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
