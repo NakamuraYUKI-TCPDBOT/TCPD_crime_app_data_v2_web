@@ -1,9 +1,7 @@
-const CACHE = 'tcpd-fine-web-v5-preset-fix';
+const CACHE = 'tcpd-fine-web-v6-copy-fix';
 const PRECACHE = [
   './',
   './index.html',
-  './style.css',
-  './app.js',
   './manifest.webmanifest',
   './data/crimes.json',
   './data/groups.json',
@@ -30,26 +28,33 @@ self.addEventListener('activate', (event) => {
   );
 });
 
+async function networkFirst(req, fallbackUrl = null) {
+  const cache = await caches.open(CACHE);
+  try {
+    const res = await fetch(req, { cache: 'no-store' });
+    if (res && res.ok) await cache.put(req, res.clone());
+    return res;
+  } catch (err) {
+    return (await cache.match(req)) || (fallbackUrl ? await cache.match(fallbackUrl) : undefined) || Response.error();
+  }
+}
+
 self.addEventListener('fetch', (event) => {
   const req = event.request;
   if (req.method !== 'GET') return;
 
   const url = new URL(req.url);
-
-  // GitHub上の最新版データはService Workerではキャッシュしない。
   if (url.hostname === 'raw.githubusercontent.com') return;
   if (url.origin !== self.location.origin) return;
 
-  // data/*.json は app.js が毎回キャッシュ回避クエリを付けるため、
-  // pathname単位に正規化してキャッシュが増え続けないようにする。
   if (url.pathname.includes('/data/')) {
     const cleanRequest = new Request(url.origin + url.pathname);
     event.respondWith(
-      fetch(req)
-        .then((res) => {
+      fetch(req, { cache: 'no-store' })
+        .then(async (res) => {
           if (res && res.ok) {
-            const copy = res.clone();
-            caches.open(CACHE).then((cache) => cache.put(cleanRequest, copy));
+            const cache = await caches.open(CACHE);
+            await cache.put(cleanRequest, res.clone());
           }
           return res;
         })
@@ -58,20 +63,23 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // HTMLはネットワーク優先。オフライン時だけキャッシュへ。
   if (req.mode === 'navigate') {
-    event.respondWith(
-      fetch(req).catch(() => caches.match('./index.html'))
-    );
+    event.respondWith(networkFirst(req, './index.html'));
     return;
   }
 
-  // CSS/JS/画像はキャッシュ優先。新しいCACHE名なので更新直後から新ファイルになる。
+  // JS/CSSは必ずネットワーク優先。更新後に古いコードへ張り付かないようにする。
+  if (url.pathname.endsWith('.js') || url.pathname.endsWith('.css') || url.pathname.endsWith('.webmanifest')) {
+    event.respondWith(networkFirst(req));
+    return;
+  }
+
+  // 画像など変更頻度の低いものだけキャッシュ優先。
   event.respondWith(
-    caches.match(req).then((cached) => cached || fetch(req).then((res) => {
+    caches.match(req).then((cached) => cached || fetch(req).then(async (res) => {
       if (res && res.ok) {
-        const copy = res.clone();
-        caches.open(CACHE).then((cache) => cache.put(req, copy));
+        const cache = await caches.open(CACHE);
+        await cache.put(req, res.clone());
       }
       return res;
     }))

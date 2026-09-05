@@ -48,3 +48,9 @@ Cloudflare側の Worker → Settings / Domains & Routes から Custom Domain を
 - プリセットのグループ判定は `groups.json` を正として扱い、`crimes.json` の `group` はグループ定義が存在しない場合のみフォールバック利用。
 - 同梱の `crimes.json` でも北ヨット強盗=`north_yacht`、サンディショア空港襲撃=`sandyshoresairport` に修正。
 - Service Workerキャッシュをv5へ更新。
+
+
+## v4 copy/cache fix
+- 1.5x fine copy now writes digits only.
+- PWA service worker cache bumped to v6.
+- app.js/style.css use network-first and versioned URLs to prevent stale Android PWA code.

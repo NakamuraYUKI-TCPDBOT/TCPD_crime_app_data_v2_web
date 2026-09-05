@@ -280,7 +280,7 @@ loadData();
 if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
   window.addEventListener('load', async () => {
     try {
-      const reg = await navigator.serviceWorker.register('sw.js?v=4');
+      const reg = await navigator.serviceWorker.register('sw.js?v=6');
       reg.update().catch(() => {});
     } catch (err) {
       console.warn('Service Worker registration failed:', err);
