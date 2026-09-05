@@ -260,10 +260,12 @@ $('copyFineBtn').addEventListener('click',()=>{
 });
 $('copyFine150Btn').addEventListener('click',()=>{
   const {totalFine}=calculate();
-  const yen=totalFine*1.5*10000;
-  const display=`合計罰金額(x1.5): ${yen.toLocaleString('ja-JP',{minimumFractionDigits:1,maximumFractionDigits:1})}`;
-  copyText(display,`${display} をコピーしました`);
-});
+  // 変更後
+  const yen = Math.round(totalFine * 1.5 * 10000);
+  copyText(
+    String(yen),
+      `罰金1.5倍 ${yen.toLocaleString('ja-JP')}円 をコピーしました`
+);
 $('clearBtnTop').addEventListener('click',()=>clearAll());
 $('clearBtnBottom').addEventListener('click',()=>clearAll());
 $('showHiddenBtn').addEventListener('click',()=>{ state.hidden.clear(); saveHidden(); renderCrimes(); showNotice('非表示の罪状を戻しました'); });
