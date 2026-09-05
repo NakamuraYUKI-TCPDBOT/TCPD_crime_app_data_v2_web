@@ -258,14 +258,16 @@ $('copyIncidentBtn').addEventListener('click',()=>copyText(selectedNames().join(
 $('copyFineBtn').addEventListener('click',()=>{
   const {totalFine}=calculate(); const yen=Math.round(totalFine*10000); copyText(String(yen),`罰金 ${yen.toLocaleString('ja-JP')}円 をコピーしました`);
 });
-$('copyFine150Btn').addEventListener('click',()=>{
-  const {totalFine}=calculate();
-  // 変更後
+$('copyFine150Btn').addEventListener('click', () => {
+  const { totalFine } = calculate();
+
   const yen = Math.round(totalFine * 1.5 * 10000);
+
   copyText(
     String(yen),
-      `罰金1.5倍 ${yen.toLocaleString('ja-JP')}円 をコピーしました`
-);
+    `罰金1.5倍 ${yen.toLocaleString('ja-JP')}円 をコピーしました`
+  );
+});
 $('clearBtnTop').addEventListener('click',()=>clearAll());
 $('clearBtnBottom').addEventListener('click',()=>clearAll());
 $('showHiddenBtn').addEventListener('click',()=>{ state.hidden.clear(); saveHidden(); renderCrimes(); showNotice('非表示の罪状を戻しました'); });
