@@ -24,7 +24,7 @@
 {"label":"ライフインベーダー 9","group_names":["life_inv","robbery_weapon","npckill","playerkill"],"group":"大型","clear_first":true},
 {"label":"北ヨット強盗 9","group_names":["north_yacht","robbery_weapon","npckill","playerkill"],"group":"大型","clear_first":true},
 {"label":"S.S.空港襲撃 10","group_names":["sandyshoresairport","robbery_weapon","npckill","playerkill"],"group":"大型","clear_first":true},
-{"label": "ブラック・ソナー 10","group_names": ["blacksonar", "robbery_weapon", "npckill", "playerkill"],"group": "大型","clear_first": true},
+{"label":"ブラック・ソナー 10","group_names": ["blacksonar", "robbery_weapon", "npckill", "playerkill"],"group": "大型","clear_first": true},
 {"label":"警察署襲撃 ∞","group_names":["police_station_raid"],"group":"特殊","clear_first":false},
 {"label":"クリア","group_names":[],"group":"操作","clear_first":false,"is_clear":true}
 ]
