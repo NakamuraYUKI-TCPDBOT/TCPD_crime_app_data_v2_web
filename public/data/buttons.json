@@ -2,7 +2,7 @@
 {"label":"コンビニ強盗 2+1","group_names":["shop_robbery","robbery_weapon","hostage","npckill"],"group":"小型","clear_first":true},
 {"label":"ATM強盗 2","group_names":["atm_robbery","robbery","hostage"],"group":"小型","clear_first":true},
 {"label":"標識強盗","group_names":["sign_robbery"],"group":"小型","clear_first":true},
-{"label": "住宅・下着強盗 2+1","group_names": ["lingerie_robbery"],"group": "小型","clear_first": true},
+{"label": "住宅・下着強盗 2+1","group_names": ["lingerie_robbery","robbery_weapon","hostage","npckill"],"group": "小型","clear_first": true},
 {"label":"ブースティングB,C,D 4","group_names":["boost_lower","robbery"],"group":"小型","clear_first":true},
 {"label":"銀行強盗 4+1","group_names":["bank","robbery_weapon","hostage"],"group":"中型","clear_first":true},
 {"label":"宝石強盗 6","group_names":["vangelico","robbery_weapon","playerkill"],"group":"中型","clear_first":true},
