@@ -5,6 +5,7 @@
   {"name": "NPC殺人未遂","fine": 3,"prison": 0,"group": [],"input": false,"visible": true},
   {"name": "銃刀法違反","fine": 10,"prison": 0,"group": [],"input": false,"visible": true},
   {"name": "薬物所持","fine": 0,"prison": 0,"input_count": true,"input_count_label": "個数","fine_per_unit": 10,"visible": true},
+  {"name": "タイマー草・ドラッグ","fine": 0,"prison": 0,"input_count": true,"input_count_label": "個数","fine_per_unit": 25,"visible": true},
   {"name": "薬物販売","fine": 200,"prison": 50,"group": [],"input": false,"visible": true},
   {"name": "薬物生成","fine": 200,"prison": 50,"group": [],"input": false,"visible": true},
   {"name": "押収対象品","fine": 1,"prison": 0,"group": [],"input": false,"visible": true},
