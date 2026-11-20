@@ -32,7 +32,7 @@
   {"name": "タグボート強盗","fine": 400,"prison": 50,"group": ["tagboat"],"input": false,"visible": true},
   {"name": "ボブキャット襲撃","fine": 750,"prison": 90,"group": ["bobcat"],"input": false,"allow_prison_over": true,"visible": true},
   {"name": "客船強盗","fine": 750,"prison": 90,"group": ["yacht"],"input": false,"allow_prison_over": true,"visible": true},
-  {"name": "パレト銀行強盗","fine": 750,"prison": 90,"group": ["paleto"],"input": false,"allow_prison_over": true,"visible": true},
+  {"name": "パレト銀行強盗","fine": 800,"prison": 90,"group": ["paleto"],"input": false,"allow_prison_over": true,"visible": true},
   {"name": "ユニオン強盗","fine": 1100,"prison": 90,"group": ["union"],"input": false,"allow_prison_over": true,"visible": true},
   {"name": "パシフィック銀行強盗","fine": 1200,"prison": 90,"group": ["pacific"],"input": false,"allow_prison_over": true,"visible": true},
   {"name": "飛行場襲撃","fine": 700,"prison": 90,"group": ["deluxe_car"],"input": false,"allow_prison_over": true,"visible": true},
